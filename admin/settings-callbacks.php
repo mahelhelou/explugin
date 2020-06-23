@@ -71,8 +71,6 @@ function explugin_callback_field_checkbox( $args ) {
 
   $checked  = isset( $options[$id] ) ? checked( $options[$id], 1, false ) : '';
 
-  $selected = ($checked)  ? 'checked=true' : '';
-
   echo '<input id="explugin_options_' . $id .'" name="explugin_options['. $id .']" type="checkbox" value="1"'. $checked .'>';
   echo '<label for="explugin_options_'. $id .'">'. $label .'</label>';
 }
