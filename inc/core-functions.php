@@ -39,12 +39,23 @@ function explugin_custom_login_styles() {
 
   if ( 'enable' === $styles ) {
     wp_enqueue_style(
-      'explugin-custom-login-css',
-      plugin_dir_url( dirname( __FILE__ ) ) . 'public/css/explugin-login.css',
+      'explugin-custom-login',
+      plugin_dir_url( dirname( __FILE__ ) ) . '/public/css/explugin-login.css',
       array(),
       null,
-      'screen' );
+      'screen'
+    );
+
+    wp_enqueue_script(
+      'explugin-custom-login-js',
+      plugin_dir_url( dirname( __FILE__ ) ) . '/public/js/explugin-login.js',
+      array(),
+      null,
+      true
+    );
   }
+
+
 }
 
 add_action( 'login_enqueue_scripts', 'explugin_custom_login_styles' );
