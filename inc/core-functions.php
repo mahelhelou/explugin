@@ -1,5 +1,9 @@
 <?php // ExPlugin - Core Functionality
 
+/**
+ * Start applying custom options to public - rendering
+ */
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Custom login logo url
@@ -37,6 +41,7 @@ function explugin_custom_login_styles() {
     $styles = sanitize_text_field( $options['custom_style'] );
   }
 
+  // Because radio button return one value (enable or disable)
   if ( 'enable' === $styles ) {
     wp_enqueue_style(
       'explugin-custom-login',

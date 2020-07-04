@@ -12,15 +12,25 @@ function explugin_callback_section_admin() {
   echo '<p>These settings enable you to customize WP Admin Area.</p>';
 }
 
+/**
+ * Every cb function for settings field has 2 parts
+    * Define variable to get_option
+    * Output the field markup
+ *
+ */
+
 // Callback: text field
 function explugin_callback_field_text( $args ) {
+  // Getting dynamic db options or default manual options
   $options = get_option( 'explugin_options', explugin_options_default() );
 
+  // $args are the 6 arguments for register_setting_field()
   $id     = isset( $args['id'] ) ? $args['id'] : '';
   $label  = isset( $args['label'] ) ? $args['label'] : '';
 
   $value  = isset( $options[$id] ) ? sanitize_text_field( $options[$id] ) : '';
 
+  // Output the markup for the field: name = name in db array of args, value = value of text field
   echo '<input id="explugin_options_' . $id .'" name="explugin_options['. $id .']" type="text" size="40" value="'. $value .'"><br />';
   echo '<label for="explugin_options_'. $id .'">'. $label .'</label>';
 }
@@ -40,6 +50,7 @@ function explugin_callback_field_radio( $args ) {
   );
 
   foreach ( $radio_options as $value => $label ) {
+    // Check if a radio option is selected
     $checked = checked( $selected_option === $value, true, false );
 
     echo '<label><input name="explugin_options['. $id .']" type="radio" value="'. $value .'"' . $checked .'>';
@@ -54,6 +65,7 @@ function explugin_callback_field_textarea( $args ) {
   $id     = isset( $args['id'] ) ? $args['id'] : '';
   $label  = isset( $args['label'] ) ? $args['label'] : '';
 
+  // Allowing user to add basic tags in the field
   $allowed_tags = wp_kses_allowed_html( 'post' );
 
   $value  = isset( $options[$id] ) ? wp_kses( stripslashes_deep( $options[$id] ), $allowed_tags ) : '';

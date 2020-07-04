@@ -1,22 +1,28 @@
 <?php // ExPlugin - Register Settings
 
+/**
+ * We build our settings using Settings API because it provides built-in security and visual consistency
+ * It handles all form processing
+ * We registe plugin options using register_settings
+ */
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Register plugin settings
 function explugin_register_settings() {
 
   register_setting(
-    'explugin_options', // match settings fields
+    'explugin_options', // match settings fields/options group
     'explugin_options', // db name
     'explugin_callback_validate_options'
   );
 
   // login section options
   add_settings_section(
-    'explugin_section_login',
-    __( 'Customize Login Page', 'explugin' ),
-    'explugin_callback_section_login',
-    'explugin' // submenu slug
+    'explugin_section_login', // id that holds settings fields
+    __( 'Customize Login Page', 'explugin' ), // h2 section heading
+    'explugin_callback_section_login', // display description of section
+    'explugin' // submenu-slug of add_submenu_page()
   );
 
   // admin area options
@@ -29,12 +35,12 @@ function explugin_register_settings() {
 
   // All settings fields
   add_settings_field(
-    'custom_url',
-    __( 'Custom URL', 'explugin' ),
-    'explugin_callback_field_text',
-    'explugin',
-    'explugin_section_login',
-    [
+    'custom_url', // settings id for db
+    __( 'Custom URL', 'explugin' ), // setting field title
+    'explugin_callback_field_text', // cb to output markup
+    'explugin', // submenu-slug
+    'explugin_section_login', // section id
+    [ // array of data passed to cb function
       'id'    => 'custom_url',
       'label' => __( 'Custom URL for the login logo link', 'explugin' )
     ]

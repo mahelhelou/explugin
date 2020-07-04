@@ -15,10 +15,10 @@ function explugin_display_settings_page() {
 
       <?php
       // output security fields
-      settings_fields( 'explugin_options' );
+      settings_fields( 'explugin_options' ); // param refers to settings group we want to display
 
-      // output setting sections
-      do_settings_sections( 'explugin' );
+      // output setting sections (markup)
+      do_settings_sections( 'explugin' ); // param: menu-slug -> put settings we create in explugin-slug (add_submene_page(.., $slug))
 
       // submit button
       submit_button();

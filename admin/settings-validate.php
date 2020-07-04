@@ -1,5 +1,9 @@
 <?php // ExPlugin - Validate Settings
 
+/**
+ * The benefit of this validation function is ensure that data is safe when changed
+ */
+
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 // Validate plugin settings

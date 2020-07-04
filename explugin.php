@@ -31,7 +31,7 @@ if ( is_admin() ) {
 // Include dependencies: admin and public
 require_once plugin_dir_path( __FILE__ ) . 'inc/core-functions.php';
 
-// Default plugin options
+// Default plugin options/settings values
 function explugin_options_default() {
   return array(
     'custom_url'      => 'https://wordpress.org/',
